@@ -47,11 +47,29 @@ export const getUserById = asyncHandler(async (req, res) => {
   res.status(200).json(user);
 });
 
+// PUT /users/:id
 export const updateUser = asyncHandler(async (req, res) => {
+  // get the firstName, lastName, and email from the request body
   const {
     body: { firstName, lastName, email },
     params: { id },
   } = req;
+  // check if firstName, lastName, and email are provided
+  if (!firstName || !lastName || !email)
+    throw new ErrorResponse(
+      "First name, last name, and email are required",
+      400
+    ); // if not, throw an error
+  // find the user by id and update it
+  const user = await User.findByIdAndUpdate(
+    id,
+    { firstName, lastName, email },
+    { new: true }
+  );
+  // if not found, throw an error
+  if (!user) throw new ErrorResponse("User not found", 404);
+  // send the user as JSON response 200
+  res.status(200).json(user);
 });
 
 export const deleteUser = asyncHandler(async (req, res) => {

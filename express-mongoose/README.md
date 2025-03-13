@@ -71,3 +71,9 @@
   - Postman
     - GET Url: http://localhost:8080/posts
     - Response: `[ {"_id":"67d27ff0674099011a32930f""title": "title","content": "content","author": {"_id": "67d2699ef02196576454ca55","firstName": "andrei","lastName": "razvan"},"createdAt":"2025-03-13T06:49:20236Z","__v": 0}]`
+
+- GET - posts by id
+
+  - Postman
+    - GET Url: http://localhost:8080/posts/67d27ff0674099011a32930f
+    - Response: `{"_id": "67d27ff0674099011a32930f","title": "title","content": "content","author": {"_id": "67d2699ef02196576454ca55","firstName": "andrei","lastName": "razvan"},"createdAt": "2025-03-13T06:49:20.236Z","__v": 0}`

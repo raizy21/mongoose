@@ -65,8 +65,16 @@ export const updatePost = asyncHandler(async (req, res) => {
   res.status(200).json(postWithAuthor);
 });
 
+// DELETE /posts/:id
 export const deletePost = asyncHandler(async (req, res) => {
+  // get the id from the request params
   const {
     params: { id },
   } = req;
+  // find the post by id and delete it
+  const post = await Post.findByIdAndDelete(id);
+  //  if post is not found throw an error 404
+  if (!post) throw new ErrorResponse("Post not found", 404);
+  // send a message as JSON 200
+  res.status(200).json({ message: "Post deleted successfully" });
 });

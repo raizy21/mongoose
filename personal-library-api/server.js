@@ -1,6 +1,8 @@
 import express from "express"; //  import express
 import mongoose from "mongoose"; //  import mongoose
 import dotenv from "dotenv"; // import dotenv
+import userRoutes from "./routes/userRoutes.js"; // import userRoutes
+import bookRoutes from "./routes/bookRoutes.js"; // import bookRoutes
 
 dotenv.config(); // configure dotenv
 const app = express(); // create an express app
@@ -12,6 +14,10 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("hello world from nodejs!");
 });
+
+// routes
+app.use("/", userRoutes);
+app.use("/", bookRoutes);
 
 // connect to MongoDB
 mongoose

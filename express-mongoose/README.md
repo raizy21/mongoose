@@ -19,7 +19,7 @@
     - GET Url: http://localhost:8080/users
     - Response: []
 
-- Post - a users
+- POST - a users
 
   - Postman - POST Url: http://localhost:8080/users
     - body:
@@ -45,17 +45,23 @@
     - DELETE Url: http://localhost:8080/users/67d268dcb83055b1c8600115
     - Response: `{"message": "User deleted"}`
 
-
-
 # Posts
 
 ##### Posts Data Models/Schema
 
-  - postSchema 
-    
-    - title: { type: String, required: [true, "Title is required"] }, // required title
-    - content: { type: String, required: [true, "Content is required"] }, // required content
-    - author: { type: Schema.Types.ObjectId, ref: "User" }, // reference to User
-    - createdAt: { type: Date, default: Date.now }, // default date
+- postSchema
+
+  - title: { type: String, required: [true, "Title is required"] }, // required title
+  - content: { type: String, required: [true, "Content is required"] }, // required content
+  - author: { type: Schema.Types.ObjectId, ref: "User" }, // reference to User
+  - createdAt: { type: Date, default: Date.now }, // default date
 
 ### CRUD Posts
+
+- POST - a posts
+
+  - Postman - POST Url: http://localhost:8080/posts
+    - body:
+      `{"title":"banana title","content": "banana content","author": "67d268fcd665589a918768c6" }`
+    - Response :
+      `{"title": "banana title","content": "banana content","author": {"_id": "67d268fcd665589a918768c6","firstName": "andrei","lastName": "chiper"},"_id": "67d27d42221d48edb73bc1fd","createdAt": "2025-03-13T06:37:54.326Z","__v": 0}`

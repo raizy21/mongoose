@@ -2,7 +2,13 @@ import asyncHandler from "../utils/asyncHandler.js";
 import ErrorResponse from "../utils/ErrorResponse.js";
 import Post from "../models/Post.js"; // import the Post model from models/Post.js
 
-export const getPosts = asyncHandler(async (req, res) => {});
+// GET /posts 
+export const getPosts = asyncHandler(async (req, res) => {
+  // find the post by id and populate the author with firstName and lastName
+  const posts = await Post.find().populate("author", "firstName lastName");
+  // send the posts as JSON 200
+  res.status(200).json(posts);
+});
 
 // POST /posts
 export const createPost = asyncHandler(async (req, res) => {
@@ -21,11 +27,7 @@ export const createPost = asyncHandler(async (req, res) => {
   res.status(201).json(postWithAuthor);
 });
 
-export const getPostById = asyncHandler(async (req, res) => {
-  const {
-    params: { id },
-  } = req;
-});
+export const getPostById = asyncHandler(async (req, res) => {});
 
 export const updatePost = asyncHandler(async (req, res) => {
   const {

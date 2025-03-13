@@ -5,8 +5,10 @@ import User from "../models/User.js"; // import the User model
 
 // GET /users
 export const getUsers = asyncHandler(async (req, res) => {
-  const users = await User.find(); // get all users
-  res.status(200).json(users); // send the users as JSON
+  // get all users with find
+  const users = await User.find();
+  // send the users as JSON response 200
+  res.status(200).json(users);
 });
 export const createUser = asyncHandler(async (req, res) => {
   const {

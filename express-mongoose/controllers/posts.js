@@ -27,7 +27,19 @@ export const createPost = asyncHandler(async (req, res) => {
   res.status(201).json(postWithAuthor);
 });
 
-export const getPostById = asyncHandler(async (req, res) => {});
+// GET /posts/:id
+export const getPostById = asyncHandler(async (req, res) => {
+  // get the id from the request params
+  const {
+    params: { id }
+  } = req;
+  // find the post by id and populate the author with firstName and lastName
+  const post = await Post.findById(id).populate('author', 'firstName lastName');
+  // if post is not found throw an error 404
+  if (!post) throw new ErrorResponse('Post not found', 404);
+  //  send the post as JSON 200
+  res.status(200).json(post);
+});
 
 export const updatePost = asyncHandler(async (req, res) => {
   const {

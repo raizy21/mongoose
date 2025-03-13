@@ -1,5 +1,16 @@
 # Postman test
 
+# Users
+
+##### Users Data Models/Schema
+
+- userSchema
+
+  - firstName: { type: String, required: [true, "First name is required"] }, // required first name
+  - lastName: { type: String, required: [true, "Last name is required"] }, // required last name
+  - email: { type: String, required: [true, "Email is required"], unique: true }, // required email
+  - createdAt: { type: Date, default: Date.now }, // default date
+
 - GET - all users
 
   - Postman
@@ -28,6 +39,6 @@
     - Response: `{"_id": "67d268dcb83055b1c8600115","firstName": "chiper","lastName": "chiper","email": "email@gmail.com","createdAt": "2025-03-13T05:10:52.903Z","__v": 0}`
 
 - DELETE - an user by id
-    - Postman
-      - DELETE Url: http://localhost:8080/users/67d268dcb83055b1c8600115 
-      - Response: `{"message": "User deleted"}`   
+  - Postman
+    - DELETE Url: http://localhost:8080/users/67d268dcb83055b1c8600115
+    - Response: `{"message": "User deleted"}`

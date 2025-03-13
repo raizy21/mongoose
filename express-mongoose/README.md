@@ -77,3 +77,10 @@
   - Postman
     - GET Url: http://localhost:8080/posts/67d27ff0674099011a32930f
     - Response: `{"_id": "67d27ff0674099011a32930f","title": "title","content": "content","author": {"_id": "67d2699ef02196576454ca55","firstName": "andrei","lastName": "razvan"},"createdAt": "2025-03-13T06:49:20.236Z","__v": 0}`
+
+- PUT - posts by id
+
+  - Postman
+    - PUT Url: http://localhost:8080/posts/67d27ff0674099011a32930f
+      - body: `{"title":"test","content": "test","author": "67d2699ef02196576454ca55" }`
+    - Response: `{"_id": "67d27ff0674099011a32930f","title": "test","content": "test","author": {"_id": "67d2699ef02196576454ca55","firstName": "andrei","lastName": "razvan"},"createdAt": "2025-03-13T06:49:20.236Z","__v": 0}`

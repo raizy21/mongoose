@@ -16,5 +16,7 @@ const UserSchema = new mongoose.Schema({
   ], // readingList field
 });
 
-// export a User model
-export default mongoose.model("User", UserSchema);
+// create a model User
+const User = mongoose.model("User", UserSchema);
+// export the model
+export default User;

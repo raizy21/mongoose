@@ -16,8 +16,8 @@ app.get("/", (req, res) => {
 });
 
 // routes
-app.use("/", userRoutes);
-app.use("/", bookRoutes);
+app.use("/user", userRoutes);
+app.use("/book", bookRoutes);
 
 // connect to MongoDB
 mongoose

@@ -8,5 +8,7 @@ const BookSchema = new mongoose.Schema({
   category: { type: String }, // category field
 });
 
-// export a Book model
-export default mongoose.model("Book", BookSchema);
+// create a model Book
+const Book = mongoose.model("Book", BookSchema);
+// export the model book  
+export default Book;

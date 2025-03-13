@@ -11,6 +11,8 @@
   - email: { type: String, required: [true, "Email is required"], unique: true }, // required email
   - createdAt: { type: Date, default: Date.now }, // default date
 
+  ### CRUD Users
+
 - GET - all users
 
   - Postman
@@ -42,3 +44,18 @@
   - Postman
     - DELETE Url: http://localhost:8080/users/67d268dcb83055b1c8600115
     - Response: `{"message": "User deleted"}`
+
+
+
+# Posts
+
+##### Posts Data Models/Schema
+
+  - postSchema 
+    
+    - title: { type: String, required: [true, "Title is required"] }, // required title
+    - content: { type: String, required: [true, "Content is required"] }, // required content
+    - author: { type: Schema.Types.ObjectId, ref: "User" }, // reference to User
+    - createdAt: { type: Date, default: Date.now }, // default date
+
+### CRUD Posts

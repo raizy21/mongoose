@@ -33,10 +33,18 @@ export const createUser = asyncHandler(async (req, res) => {
   res.status(201).json(user);
 });
 
+// GET /users/:id
 export const getUserById = asyncHandler(async (req, res) => {
+  // get the id from the request params
   const {
     params: { id },
   } = req;
+  // find the user by id
+  const user = await User.findById(id);
+  // if not found, throw an error
+  if (!user) throw new ErrorResponse("User not found", 404);
+  // send the user as JSON response 200
+  res.status(200).json(user);
 });
 
 export const updateUser = asyncHandler(async (req, res) => {

@@ -4,10 +4,21 @@ import Post from "../models/Post.js"; // import the Post model from models/Post.
 
 export const getPosts = asyncHandler(async (req, res) => {});
 
+// POST /posts
 export const createPost = asyncHandler(async (req, res) => {
+  // get the title, content, and author from the request body
   const {
-    body: { title, content, userId },
+    body: { title, content, author },
   } = req;
+  // check if title, content, and author are provided and throw an error if not 400
+  if (!title || !content || !author)
+    throw new ErrorResponse("Please provide all required fields", 400);
+  // create a new post with create title, content, and author
+  const post = await Post.create({ title, content, author });
+  // populate the author with firstName and lastName
+  const postWithAuthor = await post.populate("author", "firstName lastName");
+  // send the post with author as JSON
+  res.status(201).json(postWithAuthor);
 });
 
 export const getPostById = asyncHandler(async (req, res) => {

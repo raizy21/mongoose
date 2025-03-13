@@ -72,8 +72,16 @@ export const updateUser = asyncHandler(async (req, res) => {
   res.status(200).json(user);
 });
 
+// DELETE /users/:id
 export const deleteUser = asyncHandler(async (req, res) => {
+  // get the id from the request params
   const {
     params: { id },
   } = req;
+  // find the user by id and delete it
+  const user = await User.findByIdAndDelete(id);
+  // if not found, throw an error
+  if (!user) throw new ErrorResponse("User not found", 404);
+  // send a message as JSON response 200
+  res.status(200).json({ message: "User deleted" });
 });

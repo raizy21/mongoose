@@ -65,3 +65,9 @@
       `{"title":"banana title","content": "banana content","author": "67d268fcd665589a918768c6" }`
     - Response :
       `{"title": "banana title","content": "banana content","author": {"_id": "67d268fcd665589a918768c6","firstName": "andrei","lastName": "chiper"},"_id": "67d27d42221d48edb73bc1fd","createdAt": "2025-03-13T06:37:54.326Z","__v": 0}`
+
+- GET - all posts
+
+  - Postman
+    - GET Url: http://localhost:8080/posts
+    - Response: `[ {"_id":"67d27ff0674099011a32930f""title": "title","content": "content","author": {"_id": "67d2699ef02196576454ca55","firstName": "andrei","lastName": "razvan"},"createdAt":"2025-03-13T06:49:20236Z","__v": 0}]`

@@ -1,7 +1,7 @@
 import asyncHandler from "../utils/asyncHandler.js";
 import ErrorResponse from "../utils/ErrorResponse.js";
 
-import User from "../models/User.js";
+import User from "../models/User.js"; // import the User model
 
 // GET /users
 export const getUsers = asyncHandler(async (req, res) => {

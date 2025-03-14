@@ -101,3 +101,26 @@ export async function addBookToUser(req, res) {
     res.status(400).json({ message: err.message });
   }
 }
+//  update a user's book
+export async function updateUserBook(req, res) {
+  try {
+    // find a user by id
+    const user = await User.findById(req.params.id);
+    // send a message if the user is not found 404
+    if (!user) return res.status(404).json({ message: "User not found" });
+    //  find a book entry by id
+    const bookEntry = user.readingList.id(req.params.bookId);
+    // send a message if the book entry is not found 404
+    if (!bookEntry)
+      return res.status(404).json({ message: "Book entry not found" });
+    // update the book status
+    bookEntry.status = req.body.status; // Update the book status
+    // save the user
+    await user.save();
+    // send the user as a response
+    res.json(user);
+  } catch (err) {
+    // send an error message if there is an error 400
+    res.status(400).json({ message: err.message });
+  }
+}

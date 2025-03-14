@@ -124,3 +124,28 @@ export async function updateUserBook(req, res) {
     res.status(400).json({ message: err.message });
   }
 }
+//  delete a user's book
+export async function deleteUserBook(req, res) {
+  try {
+    // find a user by id
+    const user = await User.findById(req.params.id);
+    // send a message if the user is not found 404
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    // find the book entry in the reading list
+    const bookEntry = user.readingList.id(req.params.bookId);
+    // send a message if the book entry is not found 404
+    if (!bookEntry)
+      return res.status(404).json({ message: "Book entry not found" });
+
+    // remove the book from the reading list pull method
+    user.readingList.pull({ _id: req.params.bookId }); // Remove the book from the reading list
+    //  save the user
+    await user.save();
+    // send a message if the book is removed
+    res.json({ message: "Book removed from reading list", user });
+  } catch (err) {
+    // send an error message if there is an error 400
+    res.status(400).json({ message: err.message });
+  }
+}
